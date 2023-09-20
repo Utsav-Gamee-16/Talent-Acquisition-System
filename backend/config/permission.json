@@ -1,0 +1,354 @@
+{
+  "roles" : {
+    "1": {
+      "modules" :{
+        "gateway" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "user" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "device" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "ota" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "binary" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "inventory" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "view" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "jobTarget" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "notification" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "triggerApp" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "trigger" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "history" : {
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        }
+      }
+    },
+    "2": {
+      "modules" :{
+        "gateway" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "user" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "device" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "ota" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "binary" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "inventory" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "view" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "jobTarget" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "notification" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "triggerApp" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "trigger" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "history" : {
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        }
+      }
+    },
+    "3": {
+      "modules" :{
+        "gateway" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "user" :{
+          "add": false,
+          "edit": true,
+          "view": true,
+          "delete": false
+        },
+        "device" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "ota" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "binary" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "inventory" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "view" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "jobTarget" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "notification" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "triggerApp" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "trigger" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "history" : {
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        }
+      }
+    },
+    "4": {
+      "modules" :{
+        "gateway" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "user" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "device" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "notification" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "triggerApp" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "trigger" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "history" : {
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        }
+      }
+    },
+    "5": {
+      "modules" :{
+        "gateway" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "user" :{
+          "add": false,
+          "edit": true,
+          "view": true,
+          "delete": false
+        },
+        "device" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "ota" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "binary" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "inventory" :{
+          "add": false,
+          "edit": false,
+          "view": true,
+          "delete": false
+        },
+        "view" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "jobTarget" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "notification" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "triggerApp" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "trigger" :{
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        },
+        "history" : {
+          "add": true,
+          "edit": true,
+          "view": true,
+          "delete": true
+        }
+      }
+    }
+  }
+}

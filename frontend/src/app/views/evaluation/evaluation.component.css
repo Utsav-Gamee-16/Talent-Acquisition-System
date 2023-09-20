@@ -1,0 +1,47 @@
+
+.addcard{
+    margin: 1% 15%;
+}
+
+th{
+    text-align: center;
+}
+td{
+    text-align: center;
+    align-items: center;
+}
+.new {
+    
+    margin-right: 12px;
+    
+}
+.material-icons{
+    font-size: 16px;
+    height: 28px;
+    width: 29px;
+}
+.action{
+    margin: 0 10px;
+    width: 28px;
+    height: 28px;
+}
+.pagination{
+    margin: 2% 1%;
+}
+.leftcontent{
+    text-align: left;
+ }
+a{
+    cursor: pointer;
+  } 
+.contain {
+    height: 30px;
+    overflow: hidden;
+    width: 80px;
+    float: left;   
+  }
+  
+.show {
+    overflow: visible;
+    height: auto;
+  }

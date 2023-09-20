@@ -1,0 +1,380 @@
+<!-- view for Candidate -->
+<div *ngIf="showcandidates" class="main-content view-interviewer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Candidate Details</h4>
+            <p class="card-category"></p>
+          </div>
+          <div class="card-body">
+            <button
+              mat-raised-button
+              type="submit"
+              style="margin-bottom: 40px"
+              class="btn btn-danger pull-right"
+              (click)="addCandidateform()"
+            >
+              Add candidate
+            </button>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <th class="leftcontent">Candidate</th>
+                  <th>DOB</th>
+                  <th>Email</th>
+                  <th>Mobile1</th>
+                  <th>Designation</th>
+                  <th>Experience</th>
+                  <th>Education</th>
+
+                  <th colspan="2">Action</th>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let Candidate of candidates
+                        | paginate
+                          : {
+                              itemsPerPage: 5,
+                              currentPage: pagination,
+                              totalitems: 100
+                            }
+                    "
+                  >
+                    <td class="leftcontent">
+                      {{
+                        Candidate.first_name +
+                          " " +
+                          Candidate.middle_name +
+                          " " +
+                          Candidate.last_name
+                      }}
+                    </td>
+                    <td>
+                      {{ Candidate.date_of_birth | date:'dd/MM/yyyy'}}
+                    </td>
+                    <td>
+                      {{ Candidate.email }}
+                    </td>
+                    <td>
+                      {{ Candidate.personal_mobile }}
+                    </td>
+                    <td>
+                      {{ Candidate.designation }}
+                    </td>
+                    
+                    <td>
+                      {{floor(Candidate.experience/12)}} years  {{ Candidate.experience%12 }} months
+                    </td>
+                    <td>
+                      {{ Candidate.education }}
+                    </td>
+                    <td>
+                      <button
+                        mat-mini-fab
+                        class="action"
+                        color="disabled"
+                        aria-label="Example icon button with a launch icon"                        
+                      >
+                          <a target="_blank" href="{{baseurl}}{{Candidate.cv}}">
+                            <mat-icon color="primary">launch</mat-icon></a>
+                      </button>
+
+                      <button
+                        mat-mini-fab
+                        class="action"
+                        color="primary"
+                        aria-label="Example icon button with a edit icon"
+                        (click)="updateCandidateform(Candidate)"
+                      >
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button
+                        mat-mini-fab
+                        class="action"
+                        color="warn"
+                        aria-label="Example icon button with a delete icon"
+                        (click)="openDialog(Candidate)" 
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <pagination-controls class="pull-right pagination"
+                (pageChange)="renderPage($event)"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- add Candidate form -->
+
+<div *ngIf="showaddform" class="main-content add-interviewer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">{{title}}</h4>
+            <p class="card-category">{{subtitle}}</p>
+          </div>
+          <div class="card-body addcard">
+            <form [formGroup]="addForm" class="formfildes">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="First Name"
+                      type="text"
+                      name="first_name"
+                      formControlName="first_name"
+                      required
+                    />
+                    <mat-error *ngIf="myError('first_name', 'required')"
+                      >First name is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Middle Name"
+                      type="text"
+                      name="middle_name"
+                      formControlName="middle_name"
+                    />
+                    <mat-error *ngIf="myError('middle_name', 'required')"
+                      >Middle name is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Last Name"
+                      type="text"
+                      name="last_name"
+                      formControlName="last_name"
+                      required
+                    />
+                    <mat-error *ngIf="myError('last_name', 'required')"
+                      >Last name is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width" >
+                    <mat-label>Date of Birth</mat-label>
+                    
+                      
+                      <input matInput [matDatepicker]="picker" name="date_of_birth"
+                      formControlName="date_of_birth">
+                      <mat-datepicker-toggle matIconSuffix [for]="picker" class="dp"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                      
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Email address"
+                      name="email"
+                      formControlName="email"
+                    />
+                    <mat-error *ngIf="myError('email', 'required')"
+                      >Email is required</mat-error
+                    >
+
+                    <mat-error *ngIf="myError('email', 'pattern')"
+                      >Email is not valid</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Mobile 1"
+                      type="tel"
+                      name="personal_mobile"
+                      formControlName="personal_mobile"
+                    />
+                    <mat-error *ngIf="myError('personal_mobile', 'required')"
+                      >Mobile is required</mat-error
+                    >
+                    <mat-error *ngIf="myError('personal_mobile', 'maxlength')"
+                      >Maximum length should be 10 numbers</mat-error
+                    >
+                    <mat-error *ngIf="myError('personal_mobile', 'minlength')"
+                      >Minimum length should be 10 numbers</mat-error
+                    >
+                    <mat-error *ngIf="myError('personal_mobile', 'pattern')"
+                      >This entry can only contain numbers</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Mobile 2"
+                      type="tel"
+                      name="home_mobile"
+                      formControlName="home_mobile"
+                    />
+                    <mat-error *ngIf="myError('home_mobile', 'required')"
+                      >Mobile is required</mat-error
+                    >
+                    <mat-error *ngIf="myError('home_mobile', 'maxlength')"
+                      >Maximum length should be 10 numbers</mat-error
+                    >
+                    <mat-error *ngIf="myError('home_mobile', 'minlength')"
+                      >Minimum length should be 10 numbers</mat-error
+                    >
+                    <mat-error *ngIf="myError('home_mobile', 'pattern')"
+                      >This entry can only contain numbers</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Designation"
+                      type="text"
+                      name="designation"
+                      formControlName="designation"
+                    />
+                    <mat-error *ngIf="myError('designation', 'required')"
+                      >Designation is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Previous Company"
+                      type="text"
+                      name="previous_company"
+                      formControlName="previous_company"
+                    />
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Experience"
+                      type="number"
+                      name="experience"
+                      formControlName="experience"
+                    />
+                    <mat-error *ngIf="myError('experience', 'required')"
+                      >Experience is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Education"
+                      type="text"
+                      name="education"
+                      formControlName="education"
+                      required
+                    />
+                    <mat-error *ngIf="myError('education', 'required')"
+                      >Education is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      #fileUpload
+                      [accept]=""
+                      matInput
+                      placeholder="CV"
+                      type="file"
+                      name="cv"
+                      formControlName="cv"
+                      (change)="onChange($event)"
+                    />
+
+                    <mat-error *ngIf="myError('cv', 'required')"
+                      >CV is required</mat-error
+                    >
+                   
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <button
+                mat-raised-button
+                class="btn btn-danger pull-right"
+                type="submit"
+                *ngIf="showsavebtn"
+                (click)="onSubmit()"
+              >
+                SAVE
+              </button>
+              <button
+                mat-raised-button
+                class="btn btn-danger pull-right"
+                type="submit"
+                *ngIf="showupdatebtn"
+                (click)="onUpdate()"
+              >
+                UPDATE
+              </button>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-white pull-right"
+                (click)="cancel()"
+              >
+                CANCEL
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

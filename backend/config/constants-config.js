@@ -1,0 +1,574 @@
+/* eslint-disable object-shorthand */
+
+const FETCH_USER_LIST_SUCCESS_FOUND = "User(s) fetched successfully.";
+const FETCH_USER_LIST_SUCCESS_NOT_FOUND = "User(s) not found .";
+const FETCH_USER_LIST_ERROR = "Error while fetching user(s).";
+const FETCH_USER_LIST_EXCEPTION = "Exception while fetching user(s).";
+const FILTER_USER_SUCCESS_FOUND = "User(s) found.";
+const FILTER_USER_SUCCESS_NOT_FOUND = "User(s) not found.";
+const FILTER_USER_ERROR = "Error while searching user.";
+const FETCH_USER_FOUND_MSG = "User found.";
+const FETCH_USER_NOT_FOUND_MSG = "User does not exist.";
+
+const ADD_USER_SUCCESS = "User account is created successfully and verification code is sent to the registered email address.";
+const ADD_USER_EXCEPTION = "Exception while adding user.";
+const ADD_USER_ERROR = "Error while adding user.";
+const UPDATE_USER_SUCCESS = "User updated successfully.";
+const UPDATE_USER_EXCEPTION = "Exception while updating user.";
+const UPDATE_USER_ERROR = "Error while updating user.";
+const DELETE_USER_SUCCESS = "User deleted successfully.";
+const DELETE_USER_ERROR = "Error while deleting user.";
+const DELETE_USER_EXCEPTION = "Exception while deleting user.";
+
+const USER_EXISTS = "An account with the given email address already exists. Please try registration with a different email address.";
+//dashboard
+
+const FETCH_CANDIDATE_STATUS_SUCCESS_FOUND = "Candidate Status fetched successfully.";
+const FETCH_CANDIDATE_STATUS_SUCCESS_NOT_FOUND = "Candidate Status not found.";
+const FETCH_CANDIDATE_STATUS_EXCEPTION = "Exception while fetching candidate status"
+const FETCH_UPCOMING_INTERVIEW_SUCCESS_MSG = "Upcoming Interviews fetched successfully.";
+const FETCH_UPCOMING_INTERVIEW_SUCCESS_NOT_MSG="Upcoming Interviews not found.";
+const FETCH_UPCOMING_INTERVIEW_EXCEPTION = "Exception while fetching upcoming interviews."
+//candidate
+const FETCH_CANDIDATE_LIST_SUCCESS_FOUND = "Candidate(s) fetched successfully.";
+const FETCH_CANDIDATE_LIST_SUCCESS_NOT_FOUND = "Candidate((s) not found .";
+const FETCH_CANDIDATE_LIST_ERROR = "Error while fetching candidate(s).";
+const FETCH_CANDIDATE_LIST_EXCEPTION = "Exception while fetching candidate(s).";
+const FILTER_CANDIDATE_SUCCESS_FOUND = "Candidate(s) found.";
+const FILTER_CANDIDATE_SUCCESS_NOT_FOUND = "Candidate(s) not found.";
+const FILTER_CANDIDATE_ERROR = "Error while searching candidate.";
+const FETCH_CANDIDATE_FOUND_MSG = "Candidate found.";
+const FETCH_CANDIDATE_NOT_FOUND_MSG = "Candidate does not exist.";
+
+const ADD_CANDIDATE_SUCCESS = "Candidate account is created successfully";
+const ADD_CANDIDATE_EXCEPTION = "Exception while adding candidate.";
+const ADD_CANDIDATE_ERROR = "Error while adding candidate.";
+const UPDATE_CANDIDATE_SUCCESS = "Candidate updated successfully.";
+const UPDATE_CANDIDATE_EXCEPTION = "Exception while updating candidate.";
+const UPDATE_CANDIDATE_ERROR = "Error while updating candidate.";
+const DELETE_CANDIDATE_SUCCESS = "Candidate deleted successfully.";
+const DELETE_CANDIDATE_ERROR = "Error while deleting candidate.";
+const DELETE_CANDIDATE_EXCEPTION = "Exception while deleting candidate.";
+const CANDIDATE_EXISTS = "An account with the given email address already exists. Please try registration with a different email address.";
+
+const FETCH_PROFILE_SUCCESS_FOUND = "Profile found.";
+const FETCH_PROFILE_SUCCESS_NOT_FOUND = "Profile not found.";
+const FETCH_PROFILE_ERROR = "Error while searching Profile.";
+
+/* interviews */
+const FETCH_INTERVIEW_LIST_SUCCESS_FOUND = "interview(s) fetched successfully.";
+const FETCH_INTERVIEW_LIST_SUCCESS_NOT_FOUND = "interview(s) not found .";
+const FETCH_INTERVIEW_LIST_ERROR = "Error while fetching interview(s).";
+const FETCH_INTERVIEW_LIST_EXCEPTION = "Exception while fetching interview(s).";
+const FILTER_INTERVIEW_SUCCESS_FOUND = "interview(s) found.";
+const FILTER_INTERVIEW_SUCCESS_NOT_FOUND = "interview(s) not found.";
+const FILTER_INTERVIEW_ERROR = "Error while searching interview.";
+const FETCH_INTERVIEW_FOUND_MSG = "interview found.";
+const FETCH_INTERVIEW_NOT_FOUND_MSG = "interview does not exist.";
+
+const ADD_INTERVIEW_SUCCESS = "interview is created successfully.";
+const ADD_INTERVIEW_EXCEPTION = "Exception while adding interview.";
+const ADD_INTERVIEW_ERROR = "Error while adding interview.";
+const UPDATE_INTERVIEW_SUCCESS = "interview updated successfully.";
+const UPDATE_INTERVIEW_EXCEPTION = "Exception while updating interview.";
+const UPDATE_INTERVIEW_ERROR = "interview dose not exist with this id.";
+const DELETE_INTERVIEW_SUCCESS = "interview deleted successfully.";
+const DELETE_INTERVIEW_ERROR = "interview dose not deleted.";
+const DELETE_INTERVIEW_EXCEPTION = "Exception while deleting interview.";
+const INTERVIEW_EXISTS = "An account with the given email address already exists. Please try registration with a different email address.";
+
+
+/* events */
+const FETCH_EVENT_LIST_SUCCESS_FOUND = "event(s) fetched successfully.";
+const FETCH_EVENT_LIST_SUCCESS_NOT_FOUND = "event(s) not found .";
+const FETCH_EVENT_LIST_ERROR = "Error while fetching event(s).";
+const FETCH_EVENT_LIST_EXCEPTION = "Exception while fetching event(s).";
+const FILTER_EVENT_SUCCESS_FOUND = "event(s) found.";
+const FILTER_EVENT_SUCCESS_NOT_FOUND = "event(s) not found.";
+const FILTER_EVENT_ERROR = "Error while searching event.";
+const FETCH_EVENT_FOUND_MSG = "event found.";
+const FETCH_EVENT_NOT_FOUND_MSG = "event does not exist.";
+
+const ADD_EVENT_SUCCESS = "event is created successfully.";
+const ADD_EVENT_EXCEPTION = "Exception while adding event.";
+const ADD_EVENT_ERROR = "Error while adding event.";
+const UPDATE_EVENT_SUCCESS = "event updated successfully.";
+const UPDATE_EVENT_EXCEPTION = "Exception while updating event.";
+const UPDATE_EVENT_ERROR = "event dose not updated.";
+const DELETE_EVENT_SUCCESS = "event deleted successfully.";
+const DELETE_EVENT_ERROR = "event dose not deleted.";
+const DELETE_EVENT_EXCEPTION = "Exception while deleting event.";
+const EVENT_EXISTS = "An event dose not exist.";
+
+/* ... */
+
+const LOGIN_SUCCESS = "Login successful.";
+const LOGIN_FAILURE = "Login failed.";
+const REFRESH_TOKEN_SUCCESS = "Refresh token fetched successful.";
+const REFRESH_TOKEN_FAILURE = "Refresh token failed to fetch.";
+const ACCESS_TOKEN_FAILURE = "Access Token has expired";
+const LOGIN_INCORRECT_CREDENTIALS = "Incorrect username or password.";
+const LOGIN_SUCCESS_NEW_PASSWORD = "New Password Required.";
+const CONFIRM_SIGN_UP_SUCCESS = "Verification code verified successfully.";
+const CONFIRM_SIGN_UP_FAILURE = "Verification code failed verify.";
+const LOGOUT_SUCCESS = "Logout successful.";
+const LOGOUT_FAILURE = "Logout failed.";
+
+const PASSWORD_POLICY_FAILURE_MSG = "Password: Must be between 8 to 128 characters long."
+  + " Have at least one number, one special character, one uppercase and one lowercase letter.";
+
+const FORGET_PASSWORD_SUCCESS = "Verification code sent to registered email.";
+const FORGET_PASSWORD_FAILURE = "Forget password email sending failed";
+const FORGET_PASSWORD_INCORRECT_USERNAME = "User not found.";
+const FORGOT_PASSWORD_INVALID_CODE_OR_EMAIL = "Invalid code/email provided.";
+
+const CONFIRM_FORGOT_PASSWORD_SUCCESS = "Password confirmed.";
+const CONFIRM_FORGOT_PASSWORD_FAILURE = "Password confirmation failed.";
+const CONFIRM_FORGOT_PASSWORD_INCORRECT_USERNAME = "User not found.";
+
+const CHANGE_PASSWORD_SUCCESS = "Password has been changed.";
+const CHANGE_PASSWORD_FAILURE = "Error while changing the password ";
+const CHANGE_PASSWORD_INCORRECT_PASSWORD = "Incorrect old password.";
+
+const SET_PASSWORD_SUCCESS = "Password set success.";
+const SET_PASSWORD_FAILURE = "Error while setting the password ";
+
+const NOT_AUTHORIZED_USER = "You are not authorized person to perform this action. Please contact your administrator.";
+
+//interviewers
+const FETCH_INTERVIEWERS_LIST_SUCCESS_FOUND =
+  "Interviewer(s) fetched successfully.";
+const FETCH_INTERVIEWERS_LIST_SUCCESS_NOT_FOUND = "Interviewer(s) not found .";
+const FETCH_INTERVIEWERS_LIST_ERROR = "Error while fetching Interviewer(s).";
+const FETCH_INTERVIEWERS_LIST_EXCEPTION =
+  "Exception while fetching Interviewer(s).";
+const FILTER_INTERVIEWERS_SUCCESS_FOUND = "Interviewer(s) found.";
+const FILTER_INTERVIEWERS_SUCCESS_NOT_FOUND = "Interviewer(s) not found.";
+const FILTER_INTERVIEWERS_ERROR = "Error while searching Interviewer.";
+const FETCH_INTERVIEWERS_FOUND_MSG = "Interviewer found.";
+const FETCH_INTERVIEWERS_NOT_FOUND_MSG = "Interviewer does not exist.";
+
+const ADD_INTERVIEWERS_SUCCESS = "  Interviewer Added successfully.";
+const ADD_INTERVIEWERS_EXCEPTION = "Exception while adding interviewer.";
+const ADD_INTERVIEWERS_ERROR = "Error while adding interviewer";
+const UPDATE_INTERVIEWERS_SUCCESS = "Interviewer updated successfully.";
+const UPDATE_INTERVIEWERS_EXCEPTION = "Exception while updating Interviewer.";
+const UPDATE_INTERVIEWERS_ERROR = "Error while updating Interviewer.";
+const DELETE_INTERVIEWERS_SUCCESS = "Interviewer deleted successfully.";
+const DELETE_INTERVIEWERS_ERROR = "Error while deleting Interviewer.";
+const DELETE_INTERVIEWERS_EXCEPTION = "Exception while deleting Interviewer.";
+
+//evoluation
+const FETCH_EVALUATION_LIST_SUCCESS_FOUND = "Evaluation(s) fetched successfully.";
+const FETCH_EVALUATION_LIST_SUCCESS_NOT_FOUND = "Evaluation(s) not found .";
+const FETCH_EVALUATION_LIST_ERROR = "Error while fetching Evaluation(s).";
+const FETCH_EVALUATION_LIST_EXCEPTION = "Exception while fetching Evaluation(s).";
+const FILTER_EVALUATION_SUCCESS_FOUND = "Evaluation(s) found.";
+const FILTER_EVALUATION_SUCCESS_NOT_FOUND = "Evaluation(s) not found.";
+const FILTER_EVALUATION_ERROR = "Error while searching Evaluation.";
+const FETCH_EVALUATION_FOUND_MSG = "Evaluation found.";
+const FETCH_EVALUATION_NOT_FOUND_MSG = "Evaluation does not exist.";
+
+const ADD_EVALUATION_SUCCESS = "  Evaluation Added successfully.";
+const ADD_EVALUATION_EXCEPTION = "Exception while adding Evaluation.";
+const ADD_EVALUATION_ERROR = "Error while adding Evaluation";
+
+//report
+const FETCH_REPORT_LIST_SUCCESS_FOUND = "Report(s) fetched successfully.";
+const FETCH_REPORT_LIST_SUCCESS_NOT_FOUND = "Report(s) not found .";
+const FETCH_REPORT_LIST_ERROR = "Error while fetching Report(s).";
+const FETCH_REPORT_LIST_EXCEPTION = "Exception while fetching Report(s).";
+const FILTER_REPORT_SUCCESS_FOUND = "Report(s) found.";
+const FILTER_REPORT_SUCCESS_NOT_FOUND = "Report(s) not found.";
+const FILTER_REPORT_ERROR = "Error while searching Report.";
+const FETCH_REPORT_FOUND_MSG = "Report found.";
+const FETCH_REPORT_NOT_FOUND_MSG = "Report does not exist.";
+
+//screening
+const FETCH_SCREENING_LIST_SUCCESS_FOUND = "Screening(s) fetched successfully.";
+const FETCH_SCREENING_LIST_SUCCESS_NOT_FOUND = "Screening(s) not found .";
+const FETCH_SCREENING_LIST_ERROR = "Error while fetching Screening(s).";
+const FETCH_SCREENING_LIST_EXCEPTION = "Exception while fetching Screening(s).";
+const FILTER_SCREENING_SUCCESS_FOUND = "Screening(s) found.";
+const FILTER_SCREENING_SUCCESS_NOT_FOUND = "Screening(s) not found.";
+const FILTER_SCREENING_ERROR = "Error while searching Screening.";
+const FETCH_SCREENING_FOUND_MSG = "Screening found.";
+const FETCH_SCREENING_NOT_FOUND_MSG = "Screening does not exist.";
+
+const ADD_SCREENING_SUCCESS = "  Screening Added successfully.";
+const ADD_SCREENING_EXCEPTION = "Screening while adding Evaluation.";
+const ADD_SCREENING_ERROR = "Error while adding Screening";
+
+const REQUIRED_CANDIDATE_ID = "Please provide 'candidate_id'";
+const REQUIRED_INTERVIEWER_ID = "Please provide 'interviewer_id'";
+const REQUIRED_EVOLUTION_FOR = "Please provide evolution for parameter";
+const REQUIRED_EVOLUTION_BY = "Please provide evolution by parameter";
+const REQUIRED_EVOLUTION_COMMENT = "Please provide evolution comment parameter";
+const REQUIRED_SCREENING_DESIGNATIUON = "Please provide Candidate designation";
+const REQUIRED_SCREENING_SKILLS = "Please provide Candidate skills";
+const REQUIRED_DATE = "Please provide Report Date";
+const REQUIRED_INTERVIEWER_DESIGNATION =
+  "Please provide interviewer's designation";
+const REQUIRED_INTERVIEWER_SKILLS = "Please provide interviewer's skills";
+const REQUIRED_INTERVIEWER_DOMAIN = "Please provide interviewer's domain";
+const REQUIRED_INTERVIEWER_EXPERIENCE = "Please provide interviewer's experiance";
+
+// required parameters
+const REQUIRED_FIRST_NAME = "Please provide 'first name'"
+const REQUIRED_LAST_NAME = "Please provide 'last name'"
+const REQUIRED_MIDDLE_NAME = "Please provide 'middle name'"
+const REQUIRED_USER_TYPE = "Please provide 'user type'"
+const REQUIRED_INTERVIWER_ID = "Please provide interviewer name";
+const REQUIRED_EVENT_NAME = "Please provide event name";
+const REQUIRED_EVENT_ID = "Please provide event id";
+const REQUIRED_EVENT_TOTAL_INTERVIEWS = "Please provide total interviews in Number form";
+const REQUIRED_USER_ID = "Please provide 'userId'.";
+const REQUIRED_REVIEW = "Please provide Review";
+const REQUIRED_GATEWAY_ID = "Please provide 'gateway_id'.";
+const REQUIRED_REQUEST_BODY = "Please provide request body.";
+const REQUIRED_GATEWAY_MAC = "Please provide 'gateway_mac'.";
+const REQUIRED_DEVICE_ID = "Please provide 'device_id'.";
+const REQUIRED_PUSH_TOKEN = "Please provide 'token'.";
+const REQUIRED_PROPERTY_NAME = "Please provide 'property_name'.";
+const REQUIRED_PROPERTY_OPT = "Please provide 'property_opt'.";
+const REQUIRED_PROPERTY_VALUE = "Please provide 'property_value'.";
+const REQUIRED_TRIGGER_ID = "Please provide 'trigger_id'.";
+const REQUIRED_NOTIFICATION_TYPE = "Please provide 'notificationType'.";
+const REQUIRED_EMAIL = "Please provide 'email'.";
+const REQUIRED_CODE = "Please provide 'code'.";
+const REQUIRED_PASSWORD = "Please provide 'password'.";
+const REQUIRED_PREVIOUS_PASSWORD = "Please provide 'PreviousPassword'.";
+const REQUIRED_PROPOSED_PASSWORD = "Please provide 'ProposedPassword'.";
+const REQUIRED_USER_FIRST_NAME = "Please provide 'first_name'.";
+const REQUIRED_USER_LAST_NAME = "Please provide 'last_name'.";
+const REQUIRED_TRIGGER_STATUS = "Please provide 'status'.";
+const REQUIRED_LASTEVALUATED_USER_ID =
+  "Please provide last evaluated userID key.";
+const REQUIRED_LASTEVALUATED_ID = "Please provide last evaluated ID key.";
+const REQUIRED_JOB_ID = "Please provide 'jobId'.";
+
+// Headers Required Parameters
+const REQUIRED_AUTHORIZATION =
+  "Please provide 'authorization' parameter in request header.";
+const REQUIRED_APP_CLIENT_ID =
+  "Please provide 'appclientid' parameter in request header.";
+const REQUIRED_USER_POOL_ID =
+  "Please provide 'userpoolid' parameter in request header.";
+const REQUIRED_USER_REFRESH_TOKEN =
+  "Please provide 'refreshtoken' parameter in request header.";
+const REQUIRED_IDTOKEN =
+  "Please provide 'idtoken' parameter in request header.";
+  const BAD_REQUEST_BODY = "Bad request body.";
+const MAPPER = {
+  LOGIN: {
+    LOGIN_SUCCESSFUL_MSG: LOGIN_SUCCESS,
+    LOGIN_FAILURE_MSG: LOGIN_FAILURE,
+    LOGIN_INCORRECT_CREDENTIALS_MSG: LOGIN_INCORRECT_CREDENTIALS,
+    LOGIN_SUCCESSFUL_NEW_PASSWORD_MSG: LOGIN_SUCCESS_NEW_PASSWORD,
+    CONFIRM_SIGN_UP_SUCCESS: CONFIRM_SIGN_UP_SUCCESS,
+    CONFIRM_SIGN_UP_FAILURE: CONFIRM_SIGN_UP_FAILURE,
+    LOGOUT_SUCCESS: LOGOUT_SUCCESS,
+    LOGOUT_FAILURE: LOGOUT_FAILURE,
+  },
+  FORGET_PASSWORD: {
+    FORGET_PASSWORD_SUCCESSFUL_MSG: FORGET_PASSWORD_SUCCESS,
+    FORGET_PASSWORD_FAILURE_MSG: FORGET_PASSWORD_FAILURE,
+    FORGET_PASSWORD_USER_NOT_FOUND_MSG: FORGET_PASSWORD_INCORRECT_USERNAME,
+    FORGOT_PASSWORD_INVALID_CODE_OR_EMAIL: FORGOT_PASSWORD_INVALID_CODE_OR_EMAIL,
+  },
+  CONFIRM_FORGOT_PASSWORD: {
+    CONFIRM_FORGOT_PASSWORD_SUCCESSFUL_MSG: CONFIRM_FORGOT_PASSWORD_SUCCESS,
+    CONFIRM_FORGOT_PASSWORD_FAILURE_MSG: CONFIRM_FORGOT_PASSWORD_FAILURE,
+    CONFIRM_FORGOT_PASSWORD_USER_NOT_FOUND_MSG: CONFIRM_FORGOT_PASSWORD_INCORRECT_USERNAME,
+  },
+  CHANGE_PASSWORD: {
+    CHANGE_PASSWORD_SUCCESSFUL_MSG: CHANGE_PASSWORD_SUCCESS,
+    CHANGE_PASSWORD_FAILURE_MSG: CHANGE_PASSWORD_FAILURE,
+    CHANGE_PASSWORD_INCORRECT_PASSWORD_MSG: CHANGE_PASSWORD_INCORRECT_PASSWORD,
+  },
+  SET_PASSWORD: {
+    SET_PASSWORD_SUCCESSFUL_MSG: SET_PASSWORD_SUCCESS,
+    SET_PASSWORD_FAILURE_MSG: SET_PASSWORD_FAILURE,
+  },
+
+  REQUIRED_PARAMS: {
+    REQUIRED_FIRST_NAME:REQUIRED_FIRST_NAME,
+    REQUIRED_LAST_NAME:REQUIRED_LAST_NAME,
+    REQUIRED_MIDDLE_NAME:REQUIRED_MIDDLE_NAME,
+    REQUIRED_USER_TYPE:REQUIRED_USER_TYPE,
+    REQUIRED_INTERVIEWER_ID: REQUIRED_INTERVIWER_ID,
+    REQUIRED_CANDIDATE_ID: REQUIRED_CANDIDATE_ID,
+    REQUIRED_EVENT_NAME: REQUIRED_EVENT_NAME,
+    REQUIRED_EVENT_ID: REQUIRED_EVENT_ID,
+    REQUIRED_EVENT_TOTAL_INTERVIEWS: REQUIRED_EVENT_TOTAL_INTERVIEWS,
+    REQUIRED_USER_ID: REQUIRED_USER_ID,
+    REQUIRED_REVIEW: REQUIRED_REVIEW,
+    REQUIRED_GATEWAY_MAC: REQUIRED_GATEWAY_MAC,
+    REQUIRED_DEVICE_ID: REQUIRED_DEVICE_ID,
+    REQUIRED_PUSH_TOKEN: REQUIRED_PUSH_TOKEN,
+    REQUIRED_PROPERTY_NAME: REQUIRED_PROPERTY_NAME,
+    REQUIRED_PROPERTY_OPT: REQUIRED_PROPERTY_OPT,
+    REQUIRED_PROPERTY_VALUE: REQUIRED_PROPERTY_VALUE,
+    REQUIRED_TRIGGER_ID: REQUIRED_TRIGGER_ID,
+    REQUIRED_TRIGGER_STATUS: REQUIRED_TRIGGER_STATUS,
+    REQUIRED_NOTIFICATION_TYPE: REQUIRED_NOTIFICATION_TYPE,
+    REQUIRED_EMAIL: REQUIRED_EMAIL,
+    REQUIRED_CODE: REQUIRED_CODE,
+    REQUIRED_PASSWORD: REQUIRED_PASSWORD,
+    REQUIRED_PREVIOUS_PASSWORD: REQUIRED_PREVIOUS_PASSWORD,
+    REQUIRED_PROPOSED_PASSWORD: REQUIRED_PROPOSED_PASSWORD,
+    REQUIRED_USER_FIRST_NAME: REQUIRED_USER_FIRST_NAME,
+    REQUIRED_USER_LAST_NAME: REQUIRED_USER_LAST_NAME,
+    REQUIRED_GATEWAY_ID: REQUIRED_GATEWAY_ID,
+    REQUIRED_LASTEVALUATED_USER_ID: REQUIRED_LASTEVALUATED_USER_ID,
+    REQUIRED_LASTEVALUATED_ID: REQUIRED_LASTEVALUATED_ID,
+    REQUIRED_JOB_ID: REQUIRED_JOB_ID,
+    REQUIRED_IDTOKEN: REQUIRED_IDTOKEN,
+    REQUIRED_CANDIDATE_ID: REQUIRED_CANDIDATE_ID,
+    REQUIRED_INTERVIEWER_ID: REQUIRED_INTERVIEWER_ID,
+    REQUIRED_EVOLUTION_FOR: REQUIRED_EVOLUTION_FOR,
+    REQUIRED_EVOLUTION_BY: REQUIRED_EVOLUTION_BY,
+    REQUIRED_EVOLUTION_COMMENT: REQUIRED_EVOLUTION_COMMENT,
+    REQUIRED_SCREENING_DESIGNATIUON: REQUIRED_SCREENING_DESIGNATIUON,
+    REQUIRED_SCREENING_SKILLS: REQUIRED_SCREENING_SKILLS,
+
+    REQUIRED_DATE: REQUIRED_DATE,
+    REQUIRED_INTERVIEWER_DESIGNATION: REQUIRED_INTERVIEWER_DESIGNATION,
+    REQUIRED_INTERVIEWER_SKILLS: REQUIRED_INTERVIEWER_SKILLS,
+    REQUIRED_INTERVIEWER_DOMAIN: REQUIRED_INTERVIEWER_DOMAIN,
+    REQUIRED_INTERVIEWER_EXPERIENCE: REQUIRED_INTERVIEWER_EXPERIENCE,
+
+
+    // Headers
+    REQUIRED_AUTHORIZATION: REQUIRED_AUTHORIZATION,
+    REQUIRED_APP_CLIENT_ID: REQUIRED_APP_CLIENT_ID,
+    REQUIRED_USER_POOL_ID: REQUIRED_USER_POOL_ID,
+    REQUIRED_USER_REFRESH_TOKEN: REQUIRED_USER_REFRESH_TOKEN,
+  },
+
+  REQUEST: {
+    BAD_REQUEST_BODY: BAD_REQUEST_BODY,
+    REQUIRED_REQUEST_BODY: REQUIRED_REQUEST_BODY,
+  },
+  FETCH_USER_LIST: {
+    USER_LIST_FOUND_MSG: FETCH_USER_LIST_SUCCESS_FOUND,
+    USER_LIST_NOT_FOUND_MSG: FETCH_USER_LIST_SUCCESS_NOT_FOUND,
+    EXCEPTION_MSG: FETCH_USER_LIST_EXCEPTION,
+    ERROR_MSG: FETCH_USER_LIST_ERROR,
+    FETCH_USER_FOUND_MSG: FETCH_USER_FOUND_MSG,
+    FETCH_USER_NOT_FOUND_MSG: FETCH_USER_NOT_FOUND_MSG,
+  },
+  ADD_USER: {
+    SUCCESS_MSG: ADD_USER_SUCCESS,
+    EXCEPTION_MSG: ADD_USER_EXCEPTION,
+    ERROR_MSG: ADD_USER_ERROR,
+    USER_EXISTS: USER_EXISTS,
+  },
+  UPDATE_USER: {
+    SUCCESS_MSG: UPDATE_USER_SUCCESS,
+    EXCEPTION_MSG: UPDATE_USER_EXCEPTION,
+    ERROR_MSG: UPDATE_USER_ERROR,
+  },
+  DELETE_USER: {
+    SUCCESS_MSG: DELETE_USER_SUCCESS,
+    EXCEPTION_MSG: DELETE_USER_EXCEPTION,
+    ERROR_MSG: DELETE_USER_ERROR,
+  },
+
+  DASHBOARD:{
+    CANDIDATE_STATUS_FOUND_MSG:FETCH_CANDIDATE_STATUS_SUCCESS_FOUND,
+    CANDIDATE_STATUS_NOT_FOUND_MSG:FETCH_CANDIDATE_STATUS_SUCCESS_NOT_FOUND,
+    EXCEPTION_CANDIDATE_STATUS_MSG:FETCH_CANDIDATE_STATUS_EXCEPTION,
+    UPCOMING_INTERVIEW_FOUND_MSG:FETCH_UPCOMING_INTERVIEW_SUCCESS_MSG,
+    UPCOMING_INTERVIEW_NOT_FOUND_MSG:FETCH_UPCOMING_INTERVIEW_SUCCESS_NOT_MSG,
+    EXCEPTION_UPCOMING_INTERVIEW_MSG:FETCH_UPCOMING_INTERVIEW_EXCEPTION
+  },
+  //candidates
+  FETCH_CANDIDATE_LIST: {
+    CANDIDATE_LIST_FOUND_MSG: FETCH_CANDIDATE_LIST_SUCCESS_FOUND,
+    CANDIDATE_LIST_NOT_FOUND_MSG: FETCH_CANDIDATE_LIST_SUCCESS_NOT_FOUND,
+    EXCEPTION_MSG: FETCH_CANDIDATE_LIST_EXCEPTION,
+    ERROR_MSG: FETCH_CANDIDATE_LIST_ERROR,
+    FETCH_CANDIDATE_FOUND_MSG: FETCH_CANDIDATE_FOUND_MSG,
+    FETCH_CANDIDATE_NOT_FOUND_MSG: FETCH_CANDIDATE_NOT_FOUND_MSG,
+  },
+
+  ADD_CANDIDATE: {
+    SUCCESS_MSG: ADD_CANDIDATE_SUCCESS,
+    EXCEPTION_MSG: ADD_CANDIDATE_EXCEPTION,
+    ERROR_MSG: ADD_CANDIDATE_ERROR,
+    USER_EXISTS: CANDIDATE_EXISTS,
+  },
+
+  UPDATE_CANDIDATE: {
+    SUCCESS_MSG: UPDATE_CANDIDATE_SUCCESS,
+    EXCEPTION_MSG: UPDATE_CANDIDATE_EXCEPTION,
+    ERROR_MSG: UPDATE_CANDIDATE_ERROR,
+  },
+
+  DELETE_CANDIDATE: {
+    SUCCESS_MSG: DELETE_CANDIDATE_SUCCESS,
+    EXCEPTION_MSG: DELETE_CANDIDATE_EXCEPTION,
+    ERROR_MSG: DELETE_CANDIDATE_ERROR,
+  },
+
+  FILTER_CANDIDATE: {
+    USER_FOUND_MSG: FILTER_CANDIDATE_SUCCESS_FOUND,
+    USER_NOT_FOUND_MSG: FILTER_CANDIDATE_SUCCESS_NOT_FOUND,
+    ERROR_MSG: FILTER_CANDIDATE_ERROR,  
+
+  },
+
+  FETCH_PROFILE: {
+    PROFILE_FOUND_MSG: FETCH_PROFILE_SUCCESS_FOUND,
+    PROFILE_NOT_FOUND_MSG: FETCH_PROFILE_SUCCESS_NOT_FOUND,
+    ERROR_MSG: FETCH_PROFILE_ERROR,
+  },
+  
+//interview 
+
+FETCH_INTERVIEW_LIST: {
+  INTERVIEW_LIST_FOUND_MSG: FETCH_INTERVIEW_LIST_SUCCESS_FOUND,
+  INTERVIEW_LIST_NOT_FOUND_MSG: FETCH_INTERVIEW_LIST_SUCCESS_NOT_FOUND,
+    EXCEPTION_MSG: FETCH_INTERVIEW_LIST_EXCEPTION,
+    ERROR_MSG: FETCH_INTERVIEW_LIST_ERROR,
+    FETCH_INTERVIEW_FOUND_MSG: FETCH_INTERVIEW_FOUND_MSG,
+    FETCH_INTERVIEW_NOT_FOUND_MSG: FETCH_INTERVIEW_NOT_FOUND_MSG,
+  },
+  ADD_INTERVIEW: {
+    SUCCESS_MSG: ADD_INTERVIEW_SUCCESS,
+    EXCEPTION_MSG: ADD_INTERVIEW_EXCEPTION,
+    ERROR_MSG: ADD_INTERVIEW_ERROR,
+    INTERVIEW_EXISTS: INTERVIEW_EXISTS,
+  },
+  UPDATE_INTERVIEW: {
+    SUCCESS_MSG: UPDATE_INTERVIEW_SUCCESS,
+    EXCEPTION_MSG: UPDATE_INTERVIEW_EXCEPTION,
+    ERROR_MSG: UPDATE_INTERVIEW_ERROR,
+  },
+  DELETE_INTERVIEW: {
+    SUCCESS_MSG: DELETE_INTERVIEW_SUCCESS,
+    EXCEPTION_MSG: DELETE_INTERVIEW_EXCEPTION,
+    ERROR_MSG: DELETE_INTERVIEW_ERROR,
+  },
+
+
+  //report
+  FETCH_REPORT_LIST: {
+    REPORT_LIST_FOUND_MSG: FETCH_REPORT_LIST_SUCCESS_FOUND,
+    REPORT_LIST_NOT_FOUND_MSG: FETCH_REPORT_LIST_SUCCESS_NOT_FOUND,
+    REPORT_MSG: FETCH_REPORT_LIST_EXCEPTION,
+    ERROR_MSG: FETCH_REPORT_LIST_ERROR,
+    FETCH_REPORT_FOUND_MSG: FETCH_REPORT_FOUND_MSG,
+    FETCH_REPORT_NOT_FOUND_MSG: FETCH_REPORT_NOT_FOUND_MSG,
+    EXCEPTION_MSG: FETCH_USER_LIST_EXCEPTION,
+  },
+//evaluation
+  FETCH_EVALUATION_LIST: {
+    EVALUATION_LIST_FOUND_MSG: FETCH_EVALUATION_LIST_SUCCESS_FOUND,
+    EVALUATION_LIST_NOT_FOUND_MSG: FETCH_EVALUATION_LIST_SUCCESS_NOT_FOUND,
+    EXCEPTION_MSG: FETCH_EVALUATION_LIST_EXCEPTION,
+    ERROR_MSG: FETCH_EVALUATION_LIST_ERROR,
+    FETCH_EVALUATION_FOUND_MSG: FETCH_EVALUATION_FOUND_MSG,
+    FETCH_EVALUATION_NOT_FOUND_MSG: FETCH_EVALUATION_NOT_FOUND_MSG,
+  },
+  ADD_EVALUATION: {
+    SUCCESS_MSG: ADD_EVALUATION_SUCCESS,
+    EXCEPTION_MSG: ADD_EVALUATION_EXCEPTION,
+    ERROR_MSG: ADD_EVALUATION_ERROR,
+  },
+  FILTER_EVALUATION: {
+    EVALUATION_FOUND_MSG: FILTER_EVALUATION_SUCCESS_FOUND,
+    EVALUATION_NOT_FOUND_MSG: FILTER_EVALUATION_SUCCESS_NOT_FOUND,
+    ERROR_MSG: FILTER_EVALUATION_ERROR,
+  },
+
+  PERMISSION: {
+    NOT_AUTHORIZED_USER: NOT_AUTHORIZED_USER,
+  },
+
+  //interviewers
+FETCH_INTERVIEWERS_LIST: {
+  INTERVIEWERS_LIST_FOUND_MSG: FETCH_INTERVIEWERS_LIST_SUCCESS_FOUND,
+  INTERVIEWERS_LIST_NOT_FOUND_MSG: FETCH_INTERVIEWERS_LIST_SUCCESS_NOT_FOUND,
+  EXCEPTION_MSG: FETCH_INTERVIEWERS_LIST_EXCEPTION,
+  ERROR_MSG: FETCH_INTERVIEWERS_LIST_ERROR,
+  FETCH_INTERVIEWERS_FOUND_MSG: FETCH_INTERVIEWERS_FOUND_MSG,
+  FETCH_INTERVIEWERS_NOT_FOUND_MSG: FETCH_INTERVIEWERS_NOT_FOUND_MSG,
+},
+ADD_INTERVIEWERS: {
+  SUCCESS_MSG: ADD_INTERVIEWERS_SUCCESS,
+  EXCEPTION_MSG: ADD_INTERVIEWERS_EXCEPTION,
+  ERROR_MSG: ADD_INTERVIEWERS_ERROR,
+},
+UPDATE_INTERVIEWERS: {
+  SUCCESS_MSG: UPDATE_INTERVIEWERS_SUCCESS,
+  EXCEPTION_MSG: UPDATE_INTERVIEWERS_EXCEPTION,
+  ERROR_MSG: UPDATE_INTERVIEWERS_ERROR,
+},
+DELETE_INTERVIEWERS: {
+  SUCCESS_MSG: DELETE_INTERVIEWERS_SUCCESS,
+  EXCEPTION_MSG: DELETE_INTERVIEWERS_EXCEPTION,
+  ERROR_MSG: DELETE_INTERVIEWERS_ERROR,
+},
+FILTER_INTERVIEWERS: {
+  INTERVIEWERS_FOUND_MSG: FILTER_INTERVIEWERS_SUCCESS_FOUND,
+  INTERVIEWERS_NOT_FOUND_MSG: FILTER_INTERVIEWERS_SUCCESS_NOT_FOUND,
+  ERROR_MSG: FILTER_INTERVIEWERS_ERROR,
+},
+
+
+//screening
+FETCH_SCREENING_LIST: {
+  SCREENING_LIST_FOUND_MSG: FETCH_SCREENING_LIST_SUCCESS_FOUND,
+  SCREENING_LIST_NOT_FOUND_MSG: FETCH_SCREENING_LIST_SUCCESS_NOT_FOUND,
+  SCREENING_MSG: FETCH_SCREENING_LIST_EXCEPTION,
+  ERROR_MSG: FETCH_SCREENING_LIST_ERROR,
+  FETCH_SCREENING_FOUND_MSG: FETCH_SCREENING_FOUND_MSG,
+  FETCH_SCREENING_NOT_FOUND_MSG: FETCH_SCREENING_NOT_FOUND_MSG,
+  EXCEPTION_MSG: FETCH_SCREENING_LIST_EXCEPTION,
+},
+ADD_SCREENING: {
+  SUCCESS_MSG: ADD_SCREENING_SUCCESS,
+  EXCEPTION_MSG: ADD_SCREENING_EXCEPTION,
+  ERROR_MSG: ADD_SCREENING_ERROR,
+},
+
+//event 
+
+FETCH_EVENT_LIST: {
+    EVENT_LIST_FOUND_MSG: FETCH_EVENT_LIST_SUCCESS_FOUND,
+    EVENT_LIST_NOT_FOUND_MSG: FETCH_EVENT_LIST_SUCCESS_NOT_FOUND,
+
+    ADD_EVENT: {
+      SUCCESS_MSG: ADD_EVENT_SUCCESS,
+      EXCEPTION_MSG: ADD_EVENT_EXCEPTION,
+      ERROR_MSG: ADD_EVENT_ERROR,
+      EVENT_EXISTS: EVENT_EXISTS,
+    },
+    UPDATE_EVENT: {
+      SUCCESS_MSG: UPDATE_EVENT_SUCCESS,
+      EXCEPTION_MSG: UPDATE_EVENT_EXCEPTION,
+      ERROR_MSG: UPDATE_EVENT_ERROR,
+    },
+    DELETE_EVENT: {
+      SUCCESS_MSG: DELETE_EVENT_SUCCESS,
+      EXCEPTION_MSG: DELETE_EVENT_EXCEPTION,
+      ERROR_MSG: DELETE_EVENT_ERROR,
+    },
+
+      FETCH_EVENT_LIST: {
+      EVENT_LIST_FOUND_MSG: FETCH_EVENT_LIST_SUCCESS_FOUND,
+      EVENT_LIST_NOT_FOUND_MSG: FETCH_EVENT_LIST_SUCCESS_NOT_FOUND,
+      EXCEPTION_MSG: FETCH_EVENT_LIST_EXCEPTION,
+      ERROR_MSG: FETCH_EVENT_LIST_ERROR,
+      FETCH_EVENT_FOUND_MSG: FETCH_EVENT_FOUND_MSG,
+      FETCH_EVENT_NOT_FOUND_MSG: FETCH_EVENT_NOT_FOUND_MSG,
+    },
+   
+  }
+};
+
+module.exports = {
+  MAPPER: MAPPER, // PARAMETERS
+};

@@ -1,0 +1,241 @@
+<!-- view for interviewers -->
+
+<div *ngIf="displayview" class="main-content view-interviewer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Interviewers Details</h4>
+            <p class="card-category"></p>
+          </div>
+          <div class="card-body">
+            <button
+              mat-raised-button
+              type="submit"
+              style="margin-bottom: 40px"
+              class="btn btn-danger pull-right"
+              (click)="addInterviewerForm(data)"
+            >
+              Add interviewer
+            </button>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <th class="leftcontent">First Name</th>
+                  <th>Middle Name</th>
+                  <th class="leftcontent">Last Name</th>
+                  <th>Email</th>
+                  <th>Designation</th>
+                  <th>Domain</th>
+                  <th>Experience</th>
+                  <th>Skills</th>
+
+                  <th colspan="2">Action</th>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let data of getInterviewerValue
+                        | paginate
+                          : {
+                              itemsPerPage: tableSize,
+                              currentPage: page,
+                              totalitems: 200
+                            }
+                    "
+                  >
+                    <td class="leftcontent">{{ data.first_name }}</td>
+                    <td>{{ data.middle_name }}</td>
+                    <td class="leftcontent">{{ data.last_name }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ data.designation }}</td>
+                    <td>{{ data.domain }}</td>
+                    <td>{{ data.experience }}</td>
+                   <td> <div class="contain" [class.show]="!data.interviewer_id">
+                      {{data.skills}}
+                    </div>
+                   
+                  <a  *ngIf="hide(data.skills)" style="color: blue; " (click)="data.interviewer_id = !data.interviewer_id">
+                   {{ data.interviewer_id ? '....': 'x'}}</a>                  
+                   </td>
+                    <td>
+                      <button
+                        mat-mini-fab
+                        class="action"
+                        color="primary"
+                        aria-label="Example icon button with a edit icon"
+                        (click)="updateInterviewerForm(data)"
+                      >
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button
+                        mat-mini-fab
+                        class="action"
+                        color="warn"
+                        aria-label="Example icon button with a delete icon"
+                        (click)="openDialog(data, 'top', 'right')"
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <pagination-controls
+                class="pull-right pagination"
+                (pageChange)="onTableDataChange($event)"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- add interviewers form -->
+
+<div *ngIf="showadd" class="main-content add-interviewer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">{{ formtitle }}</h4>
+          </div>
+          <div class="card-body addcard">
+            <form [formGroup]="addForm">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field
+                    
+                    *ngIf="display_user_data"
+                    class="example-full-width"
+                  >
+                    <mat-label>User</mat-label>
+                    <mat-select
+                      matNativeControl
+                      required
+                      name="User"
+                      formControlName="user_id"
+                    >
+                      <mat-option
+                        *ngFor="let data of getInterviewerFromUser"
+                        value="{{ data.user_id }}"
+                        >{{
+                          data.first_name +
+                            " " +
+                            data.middle_name +
+                            " " +
+                            data.last_name
+                        }}</mat-option
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Designation"
+                      type="text"
+                      name="Designation"
+                      formControlName="designation"
+                    />
+                    <mat-error *ngIf="myError('designation', 'required')"
+                      >Designation is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Experience"
+                      type="number"
+                      name="Experience"
+                      formControlName="experience"
+                    />
+                    <mat-error *ngIf="myError('experience', 'required')"
+                      >Experience is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field>
+                    <mat-label>Domain</mat-label>
+                    <mat-select
+                      matNativeControl
+                      formControlName="domain"
+                      name="Domain"
+                    >
+                      <mat-option value="Cloud">Cloud</mat-option>
+                      <mat-option value="Farmware">Firmware</mat-option>
+                      <mat-option value="Hardware">Hardware</mat-option>
+                      <mat-option value="Embedded">Embedded </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Skills"
+                      type="text"
+                      formControlName="skills"
+                      name="Skills"
+                    />
+                    <mat-error *ngIf="myError('skills', 'required')"
+                      >Skills is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <button
+                (click)="updateInterviewer('top', 'right')"
+                *ngIf="display_update_btn"
+                mat-raised-button
+                class="btn btn-danger pull-right"
+                type="submit"
+                [disabled]="addForm.invalid"
+              >
+                UPDATE
+              </button>
+              <button
+                (click)="addInterviewerdata('top', 'right')"
+                *ngIf="display_save_btn"
+                mat-raised-button
+                class="btn btn-danger pull-right"
+                type="submit"
+                [disabled]="addForm.invalid"
+              >
+                SAVE
+              </button>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-white pull-right"
+                (click)="cancel()"
+              >
+                CANCEL
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

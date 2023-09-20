@@ -1,0 +1,39 @@
+.addcard{
+    margin: 1% 15%;
+}
+th{
+    text-align: center;
+}
+td{
+    text-align: center;
+    align-items: center;
+}
+
+button{
+    margin: 20px;
+}
+
+#cancel_btn{
+    color: rgba(0,0,0,.87);
+    background-color: #ffffff;
+    border: 1px solid rgba(194, 188, 188, 0.521) ;
+
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.material-icons{
+    font-size: 16px;
+    height: 28px;
+    width: 29px;
+}
+.action{
+    margin: 0 10px;
+    width: 28px;
+    height: 28px;
+}
+.pagination{
+    margin: 2% 1%;
+}
+.leftcontent{
+    text-align: left;
+}

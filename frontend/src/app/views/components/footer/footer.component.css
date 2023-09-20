@@ -1,0 +1,16 @@
+.main{
+    width: 100%;
+}
+.child{
+    display: inline-block;
+    margin: 1rem;
+}
+.copyright{ 
+    position: fixed; 
+    right: 2px;
+    text-align: right;
+    /* font-size: medium; */
+}
+.version{
+    font-size: smaller;
+}

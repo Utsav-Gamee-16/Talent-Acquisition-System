@@ -1,0 +1,177 @@
+{
+    "prod": {
+        "port": 80,
+        "mqtt_host": "mqtt://127.0.0.1",
+        "mqtt_ws_host": "ws://127.0.0.1",
+        "mqtt_response_topic": "",
+        "aws": {
+            "region": "us-east-1",
+            "userPoolId": ""
+        },
+        "db": {
+            "name": "HomeBridge",
+            "tables": {
+                "user_master": "user",
+                "gateway": "gateway",
+                "device": "device",
+                "push_active_user": "push_active_user",
+                "binaries": "binaries",
+                "jobs": "jobs",
+                "job_targets": "job_targets",
+                "trigger": "trigger",
+                "trigger_app": "trigger_app",
+                "views": "views"
+            },
+            "dynamo_db_scan_limit": 100,
+            "index": {}
+        },
+        "COGNITO": {
+            "REGION": "us-east-1",
+            "USER_POOL_ID": "",
+            "POOL_ARN": "",
+            "APP_CLIENT_ID": ""
+        },
+        "notification": {
+            "notification_application_arn": ""
+        },
+        "S3": {
+            "s3_binary_bucket": ""
+        },
+        "binary": {
+            "certificate": {
+                "common_name": "RR"
+            }
+        },
+        "LoadPartitionTime": 5
+    },
+
+    "dev": {
+        "port": 80,
+        "mqtt_host": "mqtt://127.0.0.1",
+        "mqtt_ws_host": "ws://127.0.0.1",
+        "mqtt_response_topic": "",
+        "aws": {
+            "region": "us-east-1",
+            "userPoolId": ""
+        },
+        "db": {
+            "name": "HomeBridge",
+            "tables": {
+                "user_master": "user_test",
+                "gateway": "gateway_test",
+                "device": "device_test",
+                "push_active_user": "push_active_user_test",
+                "binaries": "binaries",
+                "jobs": "jobs",
+                "job_targets": "job_targets",
+                "trigger": "trigger_test",
+                "trigger_app": "trigger_app_test",
+                "views": "views"
+            },
+            "dynamo_db_scan_limit": 100,
+            "index": {}
+        },
+        "COGNITO": {
+            "REGION": "us-east-1",
+            "USER_POOL_ID": "",
+            "POOL_ARN": "",
+            "APP_CLIENT_ID": ""
+        },
+        "notification": {
+            "notification_application_arn": ""
+        },
+        "S3": {
+            "s3_binary_bucket": ""
+        },
+        "binary":{
+            "certificate":{
+                "common_name":"volansys.com"
+            }
+        },
+
+        "LoadPartitionTime": 5
+    },
+
+
+    "test": {
+        "port": 80,
+        "mqtt_host": "mqtt://127.0.0.1",
+        "mqtt_ws_host": "ws://127.0.0.1",
+        "mqtt_response_topic": "",
+        "aws": {
+            "region": "us-east-1",
+            "userPoolId": ""
+        },
+        "db": {
+            "name": "HomeBridge",
+            "tables": {
+                "user_master": "user_test",
+                "gateway": "gateway_test",
+                "device": "device_test",
+                "push_active_user": "push_active_user_test",
+                "binaries": "binaries",
+                "jobs": "jobs",
+                "job_targets": "job_targets",
+                "trigger": "trigger_test",
+                "trigger_app": "trigger_app_test",
+                "views": "views"
+            },
+            "dynamo_db_scan_limit": 100,
+            "index": {}
+        },
+        "COGNITO": {
+            "REGION": "us-east-1",
+            "USER_POOL_ID": "",
+            "POOL_ARN": "",
+            "APP_CLIENT_ID": ""
+        },
+        "notification": {
+            "notification_application_arn": ""
+        },
+        "S3": {
+            "s3_binary_bucket": ""
+        },
+        "LoadPartitionTime": 5
+    },
+
+    "debug": {
+        "port": 80,
+        "mqtt_host": "mqtt://127.0.0.1",
+        "mqtt_ws_host": "ws://127.0.0.1",
+        "mqtt_response_topic": "",
+        "aws": {
+            "region": "us-east-1",
+            "userPoolId": ""
+        },
+        "db": {
+            "name": "HomeBridge",
+            "tables": {
+                "user_master": "user_test",
+                "gateway": "gateway_test",
+                "device": "device_test",
+                "push_active_user": "push_active_user_test",
+                "binaries": "binaries",
+                "jobs": "jobs",
+                "job_targets": "job_targets",
+                "trigger": "trigger_test",
+                "trigger_app": "trigger_app_test",
+                "views": "views"
+            },
+            "dynamo_db_scan_limit": 100,
+            "index": {}
+        },
+        "COGNITO": {
+            "REGION": "us-east-1",
+            "USER_POOL_ID": "",
+            "POOL_ARN": "",
+            "APP_CLIENT_ID": ""
+        },
+        "notification": {
+            "notification_application_arn": ""
+        },
+        "S3": {
+            "s3_binary_bucket": ""
+        },
+        "LoadPartitionTime": 5
+    }
+}

@@ -1,0 +1,168 @@
+<!-- view for interviewers -->
+
+<div *ngIf="showview" class="main-content view-interviewer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">Events Details</h4>
+              <p class="card-category"></p>
+            </div>
+            <div class="card-body">
+              <button
+                mat-raised-button
+                type="submit"
+                style="margin-bottom: 40px"
+                class="btn btn-danger pull-right"
+                (click)="addEvent()"
+              >
+                Add Event
+              </button>
+  
+              <div class="table-responsive">
+                <table mat-table class="table"> 
+                  <thead>
+                    <th class="leftcontent">Event Name</th>
+                    <th>Total Interviews</th>
+                    <th> Time</th>  
+                    <th colspan="2">Action</th>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let event of events | paginate:{
+                      itemsPerPage:5,
+                      currentPage:pagination,
+                      totalitems:100,
+                    }">
+                      <td class="leftcontent">{{event.event_name}}</td>
+                      <td>{{event.total_interviews}}</td>
+                      <td> {{event.time | date:'dd/MM/yyyy'}}</td> 
+                      <td>
+                        <button
+                          mat-mini-fab
+                          class="action"
+                          color="primary"
+                          aria-label="Example icon button with a edit icon"
+                          (click)="updateEvent(event)"
+                        >
+                          <mat-icon>edit</mat-icon>
+                        </button>
+                        <button
+                          mat-mini-fab
+                          class="action"
+                          color="warn"
+                          aria-label="Example icon button with a delete icon"
+                          (click)="openDialog(event,'top','right')"
+                        >
+                          <mat-icon>delete</mat-icon>
+                        </button>
+                      </td>
+                    </tr>
+                    
+                  </tbody>
+                </table>
+                <pagination-controls class="pull-right pagination" 
+                (pageChange)="renderPage($event)"></pagination-controls>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- add interviewers form -->
+  
+  <div *ngIf="showadd" class="main-content add-events">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">{{ formtitle }}</h4>
+            </div>
+            <div class="card-body addcard1">
+              <form  [formGroup]="addForm">
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        placeholder="Event name"
+                        type="text"
+                        name="event_name"
+                        formControlName="event_name"
+                      />
+                      <mat-error *ngIf="myError('event_name', 'required')"
+                      >Event name is required</mat-error
+                    >
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <input
+                        matInput
+                        placeholder="Total interview"
+                        type="number"
+                        name="total_interviews"
+                        formControlName="total_interviews"
+                      />
+                      <mat-error *ngIf="myError('total_interviews', 'required')"
+                      >Total interview is required</mat-error
+                    >
+                    </mat-form-field>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Date</mat-label>
+                      <input matInput [matDatepicker]="picker" formControlName="time" name="time"/>
+                      <mat-datepicker-toggle matIconSuffix [for]="picker" class="btndate dp"></mat-datepicker-toggle>
+                      <mat-datepicker #picker></mat-datepicker>
+                      <mat-error *ngIf="myError('time', 'required')"
+                      >Date is required</mat-error
+                    >
+                    </mat-form-field>
+                  </div>
+                </div>
+                <button
+                  mat-raised-button
+                  class="btn btn-danger pull-right" 
+                  *ngIf="saveButton"
+                  type="submit"
+                  (click)="onSubmit('top','right')"
+                  [disabled]="addForm.invalid"
+                >
+                  SAVE
+                </button>
+                <button
+                  mat-raised-button
+                  class="btn btn-danger pull-right"
+                  *ngIf="updateButton"
+                  type="submit"
+                  [disabled]="addForm.invalid"
+                  (click)="onUpdate('top','right')"
+                >
+                  UPDATE
+                </button>
+                <button
+                  mat-raised-button
+                  type="button"
+                  class="btn btn-white pull-right" id="cancel_btn"
+                  (click)="cancel()"
+                >
+                  CANCEL
+                </button>
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

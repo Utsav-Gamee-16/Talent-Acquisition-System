@@ -1,0 +1,234 @@
+<!-- view for interview -->
+<div *ngIf="showview" class="main-content view-interviewer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Interviews Details</h4>
+                        <p class="card-category"></p>
+                    </div>
+                    <div class="card-body">
+                        <button
+                            mat-raised-button
+                            type="submit"
+                            style="margin-bottom: 40px"
+                            class="btn btn-danger pull-right"
+                            (click)="addInterviews()">
+                            Add interviews
+                        </button>
+
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <th class="leftcontent">Candidate</th>
+                                    <th class="leftcontent">Interviewer</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Event</th>
+                                    <th>Round</th>
+                                    <th>Status</th>
+
+                                    <th colspan="2">Action</th>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let interview of interviews | paginate:{
+                                        itemsPerPage:4,
+                                        currentPage:pagination,
+                                        totalitems:100,
+                                      }">
+                                      <td class="leftcontent">{{interview.candi_first+" "+interview.candi_last}}</td>
+                                        <td class="leftcontent">{{interview.user_first+" "+interview.user_last}}</td>
+                                        <td>{{interview.interview_time | date:'dd/MM/yyyy'}}</td>
+                                        <td>{{interview.interview_time | date:'shortTime'}}</td>
+                                        <td> {{interview.event_name}}</td>
+                                        <td>{{interview.round}}</td>
+                                        <td>{{interview.status}}</td>
+                                        <td>
+                                            <button
+                                                mat-mini-fab
+                                                class="action"
+                                                color="primary"
+                                                aria-label="Example icon button
+                                                with a edit icon"
+                                                (click)="updateInterviews(interview)">
+                                                <mat-icon>edit</mat-icon>
+                                            </button>
+                                            <button
+                                                mat-mini-fab
+                                                class="action"
+                                                color="warn"
+                                                aria-label="Example icon button
+                                                with a delete icon"
+                                                (click)="openDialog(interview,'top','right')">
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                             <pagination-controls class="pull-right pagination" 
+                             (pageChange)="renderPage($event)"></pagination-controls>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- add interview form -->
+
+<div *ngIf="showadd" class="main-content add-interviewer">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">{{ formtitle }}</h4>
+                    </div>
+                    <div class="card-body addcard">
+                        <form [formGroup]="addForm">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field >
+                                        <mat-label>Interviewer</mat-label>
+                                        <mat-select
+                                            matNativeControl
+                                            required
+                                            name="interviewer_id"
+                                            formControlName="interviewer_id">
+                                            <div *ngFor="let interviewer of interviewers">
+                                                <mat-option
+                                                    value="{{interviewer.interviewer_id}}">
+                                                    {{interviewer.first_name+" "+interviewer.middle_name+" "+interviewer.last_name}}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field>
+                                        <mat-label>Candidate</mat-label>
+                                        <mat-select
+                                            matNativeControl
+                                            required
+                                            name="candidate_id"
+                                            formControlName="candidate_id">
+                                            <div *ngFor="let candidate of
+                                                candidates">
+                                                <mat-option
+                                                    value="{{candidate.candidate_id}}">
+                                                    {{candidate.first_name+" "+candidate.middle_name+" "+candidate.last_name}}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field class="example-full-width">
+                                            <input
+                                                matInput
+                                                placeholder="dd.MM.yyyy hh:mm"
+                                                formControlName="interview_time"
+                                                type="datetime-local"
+                                                [value]="startDate | date: 'yyyy-MM-ddTHH:mm'"
+                                                (change)="convertStartDate($event)"
+                                                
+                                                required
+                                                />
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field >
+                                        <mat-label>Event</mat-label>
+                                        <mat-select
+                                            matNativeControl
+                                            required
+                                            name="event_id"
+                                            formControlName="event_id">
+                                            <div *ngFor="let event of events">
+                                                <mat-option
+                                                    value="{{event.event_id}}">
+                                                    {{event.event_name+" "+(event.time | date)}}
+                                                </mat-option>
+                                            </div>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <mat-form-field >
+                                        <mat-label>Round</mat-label>
+                                        <mat-select
+                                            matNativeControl
+                                            formControlName="round"
+                                            name="round">
+                                            <mat-option value="1">1st</mat-option>
+                                            <mat-option value="2">2nd</mat-option>
+                                            <mat-option value="3">3rd</mat-option>
+                                            <mat-option value="4">4th</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row" *ngIf="showSatus">
+                                <div class="col-md-12">
+                                    <mat-form-field>
+                                        <mat-label>Status</mat-label>
+                                        <mat-select
+                                            matNativeControl
+                                            formControlName="status"
+                                            name="status">
+                                            <mat-option value="pass">Pass</mat-option>
+                                            <mat-option value="Stand-by">Stand-by</mat-option>
+                                            <mat-option value="fail">Fail</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+
+                            <button
+                                mat-raised-button
+                                class="btn btn-danger pull-right"
+                                type="submit"
+                                (click)="onSubmit('top','right')"
+                                [disabled]="addForm.invalid"
+                                *ngIf="saveButton"
+                                >
+                                SAVE
+                            </button>
+                            <button
+                                mat-raised-button
+                                class="btn btn-danger pull-right"
+                                type="submit"
+                                (click)="onUpdate('top','right')"
+                                [disabled]="addForm.invalid"
+                                *ngIf="updateButton"
+                                >
+                                UPDATE
+                            </button>
+                            <button
+                                mat-raised-button
+                                type="submit"
+                                class="btn btn-white pull-right" id="cancel_btn"
+                                (click)="cancel()">
+                                CANCEL
+                            </button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

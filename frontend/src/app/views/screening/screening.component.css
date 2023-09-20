@@ -1,0 +1,39 @@
+
+.addcard{
+    margin: 1% 15%;
+}
+
+th{
+    text-align: center;
+    padding: 8px;
+}
+td{
+    text-align: center;
+    align-items: center;
+}
+.pagination{
+    margin: 2% 1%;
+}
+.leftcontent{
+    text-align: left;
+}
+a{
+    cursor: pointer;
+  } 
+  td.skill{
+    text-align: start!important;
+  }
+.contain {    
+    height: 30px;
+    overflow: hidden; 
+    width: 50px;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+    margin-right: 0px;
+    float: left; 
+  }
+  
+  .show {
+    overflow: visible;
+    height: auto;
+  }
+
+    

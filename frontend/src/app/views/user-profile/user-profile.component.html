@@ -1,0 +1,244 @@
+<!-- view for user -->
+
+<div *ngIf="showusers" class="main-content view-interviewer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">User Details</h4>
+            <p class="card-category"></p>
+          </div>
+          <div class="card-body">
+            <button
+              mat-raised-button
+              type="submit"
+              style="margin-bottom: 40px"
+              class="btn btn-danger pull-right"
+              (click)="addUserform()"
+            >
+              Add user
+            </button>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <th class="leftcontent">User</th>
+                  <th>Email</th>
+                  <th>Mobile</th>
+                  <th>User type</th>
+                  <th colspan="2">Action</th>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="
+                      let User of users
+                        | paginate
+                          : {
+                              itemsPerPage: 4,
+                              currentPage: pagination,
+                              totalitems: 100
+                            }
+                    "
+                  >
+                    <td class="leftcontent">
+                      {{ User.first_name+" "+User.middle_name+" "+User.last_name }}
+                    </td>
+                    <td>
+                      {{ User.email }}
+                    </td>
+                    <td>
+                      {{ User.mobile }}
+                    </td>
+                    <td>
+                      {{ User.user_type }}
+                    </td>
+                    <td>
+                      <button
+                        mat-mini-fab
+                        class="action"
+                        color="primary"
+                        aria-label="Example icon button with a edit icon"
+                        (click)="updateUserform(User)"
+                      >
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                      <button
+                        mat-mini-fab
+                        class="action"
+                        color="warn"
+                        aria-label="Example icon button with a delete icon"
+                        (click)="openDialog(User)"
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <pagination-controls class="pull-right pagination"
+                (pageChange)="renderPage($event)"
+              ></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- add user form -->
+
+<div *ngIf="showaddform" class="main-content add-interviewer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">{{title}}</h4>
+          </div>
+          <div class="card-body addcard">            
+            <form [formGroup]="addForm" class="formfildes">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="First Name"
+                      type="text"
+                      name="first_name"
+                      formControlName="first_name"
+                    />
+                    <mat-error *ngIf="myError('first_name', 'required')"
+                      >First name is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Middle Name"
+                      type="text"
+                      name="middle_name"
+                      formControlName="middle_name"
+                    />
+                    <mat-error *ngIf="myError('middle_name', 'required')"
+                      >Middle name is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Last Name"
+                      type="text"
+                      name="last_name"
+                      formControlName="last_name"
+                    />
+                    <mat-error *ngIf="myError('last_name', 'required')"
+                      >Last name is required</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Email address"
+                      name="email"
+                      formControlName="email"
+                    />
+                    <mat-error *ngIf="myError('email', 'required')"
+                      >Email is required</mat-error
+                    >
+
+                    <mat-error *ngIf="myError('email', 'pattern')"
+                      >Email is not valid</mat-error
+                    >
+                  </mat-form-field>
+                </div>
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Mobile"
+                      type="tel"
+                      name="mobile"
+                      formControlName="mobile"
+                    />
+                    <mat-error *ngIf="myError('mobile', 'required')"
+                      >Mobile is required</mat-error
+                    >
+                    <mat-error *ngIf="myError('mobile', 'maxlength')">Maximum length should be 10 numbers</mat-error>
+                    <mat-error *ngIf="myError('mobile', 'minlength')">Minimum length should be 10 numbers</mat-error>
+                    <mat-error *ngIf="myError('mobile', 'pattern')"
+                      >This entry can only contain numbers</mat-error
+                    >
+
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field>
+                    <mat-label>User type</mat-label>
+                    <mat-select
+                      formControlName="user_type"
+                      name="user_type"
+                      
+                    >
+                      <mat-option value="Admin">Admin</mat-option>
+                      <mat-option value="TAG">TAG</mat-option>
+                      <mat-option value="interviewer">Interviewer</mat-option>
+                      <mat-error *ngIf="myError('user_type', 'required')"
+                        >User type is required</mat-error
+                      >
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <button
+                mat-raised-button
+                class="btn btn-danger pull-right"
+                type="submit"
+                *ngIf="showsavebtn"
+                (click)="onSubmit('top','right')"
+              >
+                SAVE
+              </button>
+              <button
+                mat-raised-button
+                class="btn btn-danger pull-right"
+                type="submit"
+                *ngIf="showupdatebtn"
+                (click)="onUpdate('top','right')"
+              >
+                UPDATE
+              </button>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-white pull-right"
+                (click)="cancel()"
+              >
+                CANCEL
+              </button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

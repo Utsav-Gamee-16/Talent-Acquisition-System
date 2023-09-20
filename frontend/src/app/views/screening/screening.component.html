@@ -1,0 +1,196 @@
+<!-- view screening -->
+<div class="main-content" *ngIf="showview">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Screening</h4>
+            <p class="card-category"></p>
+          </div>
+          <div class="card-body">
+            <button
+              mat-raised-button
+              type="submit"
+              (click)="addScreening()"
+              style="margin-bottom: 40px"
+              class="btn btn-danger pull-right">
+              Add Screening
+            </button>
+
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                  <th>CandidateName</th>
+                  <th>Designation</th>
+                  <th style="text-align: left;">Skills</th>
+
+                  <!-- status == review -->
+                  <th>Status</th>
+                  <th>Date</th>
+                </thead>
+                <tbody>
+                  <tr
+                    *ngFor="let screening of screenings | paginate:{
+                    itemsPerPage:5,
+                    currentPage:pagination,
+                    totalitems:100,
+                    }">
+                    <td>
+                      {{
+                      screening.first_name +
+                      " " +
+                      screening.middle_name +
+                      " " +
+                      screening.last_name
+                      }}
+                    </td>
+                    <td>
+                      {{ screening.designation }}
+                    </td>
+                    <td class="skill">
+                      <div
+                        class="contain"
+                        [class.show]="!screening.screening_id">
+                        {{ screening.skills }}
+                      </div>
+                      <a
+                        *ngIf="hide(screening.skills)"
+                        style="color: blue"
+                        (click)="
+                        screening.screening_id= !screening.screening_id
+                        ">
+                        {{ screening.screening_id ? "...." : "x" }}</a>
+                    </td>
+                    <td *ngIf="screening.review">
+                      Selected
+                    </td>
+                    <td *ngIf="!screening.review">
+                      Rejected
+                    </td>
+
+                    <td>{{ screening.created_at | date : "dd/MM/yyyy" }}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <pagination-controls
+                class="pull-right pagination"
+                (pageChange)="renderPage($event)"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- add screening form -->
+
+<div class="main-content" *ngIf="showadd">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger" (click)="addScreening()">
+            <h4 class="card-title">{{ formtitle }}</h4>
+          </div>
+          <div class="card-body addcard">
+            <form [formGroup]="addForm">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field>
+                    <mat-label>Candidate Name</mat-label>
+                    <mat-select
+                      matNativeControl
+                      required
+                      name="candidate_id"
+                      formControlName="candidate_id">
+                      <div *ngFor="let candidate of candidates">
+                        <mat-option value="{{ candidate.candidate_id }}">
+                          {{
+                          candidate.first_name +
+                          " " +
+                          candidate.middle_name +
+                          " " +
+                          candidate.last_name
+                          }}
+                        </mat-option>
+                      </div>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Designation"
+                      type="text"
+                      formControlName="designation"
+                      />
+                    <mat-error *ngIf="myError('designation', 'required')">Designation
+                      is required</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input
+                      matInput
+                      placeholder="Skills"
+                      type="text"
+                      formControlName="skills"
+                      />
+                    <mat-error *ngIf="myError('skills', 'required')">Skills is
+                      required</mat-error>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field>
+                    <mat-label>Status</mat-label>
+
+                    <mat-select
+                      matNativeControl
+                      required
+                      name="Review"
+                      formControlName="review">
+                      <mat-option value="true">Selected</mat-option>
+                      <mat-option value="false">Rejected</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <button
+                mat-raised-button
+                class="btn btn-danger pull-right"
+                *ngIf="saveButton"
+                type="submit"
+                (click)="onSubmit('top', 'right')"
+                [disabled]="addForm.invalid">
+                SAVE
+              </button>
+              <button
+                mat-raised-button
+                type="submit"
+                class="btn btn-white pull-right"
+                id="cancel_btn"
+                (click)="cancel()">
+                CANCEL
+              </button>
+
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

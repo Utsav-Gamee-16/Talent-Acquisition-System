@@ -1,0 +1,135 @@
+<div class="container-fluid report-view">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Report Details</h4>
+          <p class="card-category"></p>
+        </div>
+        <div>
+          <form [formGroup]="reportDates">
+            <div class="report row">
+              <div class="report-search col-md-7">
+                <!-- report start date -->
+                <mat-form-field class="sdate">
+                  <mat-label>Choose start a date</mat-label>
+                  <input
+                    matInput
+                    readonly
+                    [matDatepicker]="picker"
+                    formControlName="date1"
+                    (dateChange)="onStartDate($event.value)"
+                  />
+                  <mat-datepicker-toggle
+                    class="dp"
+                    matIconSuffix
+                    [for]="picker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-error *ngIf="myError('date1', 'required')"
+                      >Date is required.</mat-error
+                    >
+                  
+                </mat-form-field>
+
+                <!-- report end date -->
+                <mat-form-field class="edate">
+                  <mat-label>Choose end a date</mat-label>
+                  <input
+                    matInput
+                    readonly
+                    [min]="minDate"
+                    [matDatepicker]="picker2"
+                    formControlName="date2"
+                  />
+                  <mat-datepicker-toggle
+                    matIconSuffix
+                    [for]="picker2"
+                    class="dp"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                  <mat-error *ngIf="myError('date2', 'required')"
+                      >Date is required.</mat-error
+                    >
+                </mat-form-field>
+
+                <!-- report search button -->
+                <button
+                  mat-raised-button
+                  class="btn btn-danger pull-right search-btn"
+                  type="submit"
+                  (click)="onSubmit('top', 'right')"
+                >
+                  Search
+                </button>
+              </div>
+              <!-- report export button -->
+              <div class="col-md-4 export-report">
+                <button
+                  mat-raised-button
+                  type="submit"
+                  style="margin-bottom: 40px"
+                  class="btn btn-danger pull-right"
+                  (click)="exportReport('top', 'right')"
+                  [disabled]="reportData.length == 0"
+                >
+                  Export Report
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="card-body">
+          <div class="table-responsive rtable">
+            <table class="table" *ngIf="reportData.length > 0">
+              <thead>
+                <th>Candidate id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Personal Mobile</th>
+                <th>Designation</th>
+                <th>Evaluation Round</th>
+                <th>Evaluation By</th>
+                <th>Comment</th>
+                <th>Interview Time</th>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="
+                    let reportDetalis of reportData
+                      | paginate
+                        : {
+                            itemsPerPage: tableSize,
+                            currentPage: page,
+                            totalitems: 200
+                          }
+                  "
+                >
+                  <td>{{ reportDetalis.candidate_id }}</td>
+                  <td>{{ reportDetalis.first_name }}</td>
+                  <td>{{ reportDetalis.last_name }}</td>
+                  <td>{{ reportDetalis.email }}</td>
+                  <td>{{ reportDetalis.personal_mobile }}</td>
+                  <td>{{ reportDetalis.designation }}</td>
+                  <td>{{ reportDetalis.evaluation_round }}</td>
+                  <td>{{ reportDetalis.evaluation_by }}</td>
+                  <td>{{ reportDetalis.comment }}</td>
+                  <td>
+                    {{ reportDetalis.interview_time | date : "dd-MM-yyyy" }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <pagination-controls
+              *ngIf="showpaginator"
+              class="pull-right pagination"
+              (pageChange)="onTableDataChange($event)"
+            ></pagination-controls>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

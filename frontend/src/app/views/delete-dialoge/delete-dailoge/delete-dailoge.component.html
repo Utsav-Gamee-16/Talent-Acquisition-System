@@ -1,0 +1,32 @@
+<i class="material-icons delete-icon">delete_forever</i>
+<br />
+<h4>Are you sure ?</h4>
+<h5>
+  Do you really want to delete these records? This Process cannot be undone.
+</h5>
+<p></p>
+
+<div>
+  <div class="swal2-actions mat-dialog-actions" style="display: flex">
+    <button
+      mat-button
+      mat-dialog-close
+      type="button"
+      class="swal2-cancel btn btn-muted mat-dialog-close"
+      aria-label=""
+      style="display: inline-block"
+    >
+      Cancel
+    </button>
+    <button
+      mat-button
+      mat-dialog-close
+      cdkFocusInitial
+      class="btn btn-danger"
+      type="button"
+      (click)="delete(data, 'top', 'right')"
+    >
+      Delete
+    </button>
+  </div>
+</div>

@@ -1,0 +1,274 @@
+<!-- view for interview -->
+
+<div *ngIf="showview" class="main-content view-interviewer">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-danger">
+                      <h4 class="card-title">Evaluation Details</h4>
+                      <p class="card-category"></p>
+                  </div>
+                  <div class="card-body">
+                      <button
+                          mat-raised-button
+                          type="submit"
+                          style="margin-bottom: 40px"
+                          class="btn btn-danger pull-right"
+                          (click)="addEvaluations()">
+                          Add Evaluation
+                      </button>
+
+                      <div class="table-responsive">
+                          <table class="table">
+                              <thead>
+                                  <th class="leftcontent">Candidate Name</th>
+                                  <th class="leftcontent">Interviewer Name</th>
+                                  <th>Round(s)</th>
+                                  
+                                  <th>Evaluation For</th>
+                                  <th>Position Assigned</th>
+                                  <th>Evaluation By</th>
+                                  
+                                  
+                                  <th>Comments</th>
+
+                                  <th>Action</th>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let data of evaluationsAllData | paginate:{
+                                    itemsPerPage:5,
+                                    currentPage:pagination,
+                                    totalitems:100,
+                                 }">
+                                      <td class="leftcontent">{{data.first_name+" "+data.middle_name+" "+data.last_name}}</td>
+                                      <td class="leftcontent">{{data.interviewer_fname+" "+data.interviewer_mname+" "+data.interviewer_lname}}</td>
+                                      <td>{{data.round}}</td>
+                                      <td>{{data.evaluation_for}}</td>
+                                      <td>{{data.position_assigned}}</td>
+                                      <td>{{data.evaluation_by}}</td>
+                                      <td> <div class="contain" [class.show]="!data.evaluation_id">
+                                        {{data.comment}}
+                                      </div>
+                                     
+                                    <a  *ngIf="hide(data.comment)" style="color: blue; " (click)="data.evaluation_id = !data.evaluation_id">
+                                     {{ data.evaluation_id ? '....': 'x'}}</a>   
+                                      <td>
+                                          <button
+                                              mat-mini-fab
+                                              class="action"
+                                              color="primary"
+                                              aria-label="Example icon button
+                                              with a edit icon"
+                                              (click)="updateEvaluations(data)">
+                                              <mat-icon>edit</mat-icon>
+                                          </button>
+                                         
+                                         
+                                      </td>
+                                  </tr>
+                              </tbody>
+                          </table>
+
+                          <pagination-controls class="pull-right pagination"
+                          (pageChange)="renderPage($event)"
+                        ></pagination-controls>                          
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- add evaluation form -->
+
+
+  
+  <div *ngIf="showadd" class="main-content add-evaluation">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header card-header-danger">
+              <h4 class="card-title">{{ formtitle }}</h4>
+            </div>
+            <div class="card-body addcard">
+                <form [formGroup]="addForm">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field>
+                            <mat-label>Candidate Name</mat-label>
+                            <mat-select
+                                matNativeControl
+                                required
+                                name="candidate_id"
+                                formControlName="candidate_id">
+                                <div *ngFor="let candidate of
+                                candidates">
+                                    <mat-option
+                                        value="{{candidate.candidate_id}}">
+                                        {{candidate.first_name+" "+candidate.middle_name+" "+candidate.last_name}}
+                                    </mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field>
+                            <mat-label>Interviewer Name</mat-label>
+                            <mat-select
+                                matNativeControl
+                                required
+                                name="interviewer_id"
+                                formControlName="interviewer_id">
+                                <div *ngFor="let interviewer of interviewers">
+                                    <mat-option
+                                        value="{{interviewer.interviewer_id}}">
+                                        {{interviewer.first_name+" "+interviewer.middle_name+" "+interviewer.last_name}}
+                                    </mat-option>
+                                </div>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field>
+                            <mat-label>Round</mat-label>
+                            <mat-select
+                                matNativeControl
+                                formControlName="round"
+                                name="round">
+                                <mat-option value="1">1st</mat-option>
+                                <mat-option value="2">2nd</mat-option>
+                                <mat-option value="3">3rd</mat-option>
+                                <mat-option value="4">4th</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+          
+            
+            <div class="row">
+              <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                   
+                      <input
+                          matInput
+                          placeholder="Evaluation For"
+                          type="text"
+                          name="evaluation_for"
+                          formControlName="evaluation_for"
+                          />
+                          <mat-error *ngIf="myError('evaluation_for', 'required')"
+                      >Evaluation For is required</mat-error
+                    >
+                  </mat-form-field>
+              </div>
+          </div>
+          
+          
+          <div class="row">
+            <div class="col-md-12">
+                <mat-form-field class="example-full-width">
+                  <mat-label>Position Assigned</mat-label>
+                    <input
+                        matInput
+                        placeholder="Position Assigned"
+                        type="text"
+                        name="position_assigned"
+                        formControlName="position_assigned"
+                        />
+                        <mat-error *ngIf="myError('position_assigned', 'required')"
+                      >Position Assigned is required</mat-error
+                    >
+                </mat-form-field>
+            </div>
+          </div>
+          
+          
+          
+         
+          <div class="row">
+            <div class="col-md-12">
+                <mat-form-field class="example-full-width">
+                 
+                    <input
+                        matInput
+                        placeholder="Evaluation By"
+                        type="text"
+                        name="evaluation_by"
+                        formControlName="evaluation_by"
+                        />
+                        <mat-error *ngIf="myError('evaluation_by', 'required')"
+                      >Evaluation By is required</mat-error
+                    >
+                </mat-form-field>
+            </div>
+        </div>         
+          
+          <mat-form-field [style.fontSize]="autosize" >
+            <input
+                          matInput
+                          placeholder="Comments"
+                          
+                          name="comment"
+                          formControlName="comment"
+                          />
+            <textarea matInput
+                      cdkTextareaAutosize
+                      #autosize="cdkTextareaAutosize"
+                      cdkAutosizeMinRows="5"
+                      cdkAutosizeMaxRows="5"></textarea>
+          </mat-form-field>
+
+          
+          
+         
+          <button
+          mat-raised-button
+          class="btn btn-danger pull-right" 
+          *ngIf="saveButton"
+          type="submit"
+          (click)="onSubmit('top', 'right')"
+          [disabled]="addForm.invalid"
+        >
+          SAVE
+        </button>
+                <button
+                mat-raised-button
+                class="btn btn-danger pull-right"
+                type="submit"   
+                (click)="onUpdate('top','right')"
+                *ngIf="updateButton"
+                [disabled]="addForm.invalid"
+                >
+                UPDATE
+            </button>
+
+        
+            <button
+            mat-raised-button
+            type="submit"
+            class="btn btn-white pull-right" id="cancel_btn"
+            (click)="cancel()">
+            CANCEL
+        </button>
+          <div class="clearfix"></div>
+    
+          
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

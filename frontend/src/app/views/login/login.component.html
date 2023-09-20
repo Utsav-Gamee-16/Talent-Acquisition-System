@@ -1,0 +1,88 @@
+
+<!-- login page -->
+
+<div class="fluid-container">
+  <mat-toolbar>
+    <img
+      mat-card-image
+      class="th-img"
+      src="../../../assets/img/th.png"
+      alt="Talent Hunter"
+    />
+  </mat-toolbar>
+</div>
+<mat-card class="my-card" *ngIf="showlogin">
+  <mat-card-content class="my-card-content">
+    <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+      <img
+        mat-card-image
+        class="login-img"
+        src="../../../assets/img/login.png"
+        alt="Volansys Technology"
+      />
+      
+
+      <mat-form-field class="full-width">
+        
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          placeholder="Enter a valid email address"
+          name="Email"
+          formControlName="Email"
+        />
+        <mat-error *ngIf="myError('Email', 'required')"
+          >Email is required</mat-error
+        >
+
+        <mat-error *ngIf="myError('Email', 'pattern')"
+          >Email is not valid</mat-error
+        >
+      </mat-form-field>
+      <mat-form-field class="full-width">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          placeholder="Password"
+          type="password"
+          name="Password"
+          formControlName="Password"
+        />
+        <mat-error *ngIf="myError('Password', 'required')"
+          >Password is required</mat-error
+        >
+      </mat-form-field>
+      <br />
+      <button mat-raised-button color="success" class="login-btn">Login</button>
+      <br /><br />
+      <span class="errormsg" *ngIf="error">Server Is Not Responding</span>
+    </form>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngIf="showforgot" class="forgot-card">
+  <mat-card-content class="forgot-card-content">
+    <mat-icon>verified_user</mat-icon>
+
+    <h3>OTP verification</h3>
+    <h6>Please check your email, we've sent you a verification code.</h6>
+    <form (ngSubmit)="onSubmit()" [formGroup]="myForm">
+      <mat-form-field class="full-width">
+        <mat-error *ngIf="myError('Email', 'required')"
+          >Email is required</mat-error
+        >
+        <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)"
+         *ngIf="showOtpComponent" [config]="config"></ng-otp-input>
+
+        <mat-error *ngIf="myError('Email', 'pattern')"
+          >Email is not valid</mat-error
+        >
+      </mat-form-field>
+      <button mat-raised-button color="success" class="submit-btn">
+        Submit
+      </button>
+      <br /><br />
+      <a (click)="login()" class="login" href=".">Back to login</a>
+    </form>
+  </mat-card-content>
+</mat-card>

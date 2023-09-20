@@ -1,0 +1,71 @@
+.pie-chart {
+  display: block;
+  width: auto;
+}
+
+.bar-chart {
+  display: block;
+  width: 400px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.interviewers_status {
+  margin-left: 5px;
+}
+
+.charts {
+  margin-left: 10px;
+}
+
+.drop {
+  width: auto;
+  height: 200px;
+  overflow-y: auto;
+  color: black;
+}
+
+.drop:active::-webkit-scrollbar-thumb,
+.drop:focus::-webkit-scrollbar-thumb,
+.drop:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
+}
+.drop::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 6px;
+  border: 19px;
+}
+.header {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-bottom: 1px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+
+.drop::-webkit-scrollbar {
+  width: 7px;
+  height: 8px;
+}
+.drop::-webkit-scrollbar:hover {
+  width: 10px;
+  height: 10px;
+}
+
+.container_wrap {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 13px !important;
+  width: 100%;
+}
+.table-header{
+  font-weight: 400;
+
+}
+.user_info {
+  font-size: 14px;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+.upcoming_interviews{
+  margin-top: 22px;
+}

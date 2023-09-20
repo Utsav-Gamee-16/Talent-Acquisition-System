@@ -1,0 +1,118 @@
+<div class="main-content dashboard">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">groups</i>
+            </div>
+            <p class="card-category">Total Candidates</p>
+            <h3
+              class="card-title"
+              *ngFor="let candidate of getCandidateCountValue"
+            >
+              {{ candidate.count }}
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons text-danger"></i>
+              <a href="javascript:void(0)"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-info card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">event</i>
+            </div>
+            <p class="card-category">Total Events</p>
+            <h3 class="card-title" *ngFor="let event of getEventCountValue">
+              {{ event.count }}
+            </h3>
+          </div>
+
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons text-danger"></i>
+              <a href="javascript:void(0)"></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">photo_camera_front</i>
+            </div>
+            <p class="card-category">Total Interview</p>
+            <h3
+              class="card-title"
+              *ngFor="let interview of getInterviewCountValue"
+            >
+              {{ interview.count }}
+            </h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <i class="material-icons"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row charts m-2">
+  <div class="col-md-5">
+    <div class="card card-chart">
+      <div class="card-body">
+        <h4 class="card-title">Candidates Status</h4>
+      </div>
+      <div class="card-footer"></div>
+      <div style="display: block" class="pie-chart">
+        <canvas
+          baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          [colors]="pieChartColors"
+        ></canvas>
+      </div>
+     
+      <div class="card-footer">
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-7 upcoming_interviews">
+    <div class="card card-chart">
+      <div class="card-header card-header-danger">
+        <h4 class="card-title">Upcoming Interviews</h4>
+      </div>
+      <div class="container_wrap table-header">
+        <p class="header">Candidate Name</p>
+        <p class="header">Interview Date</p>
+      </div>
+      <hr>
+      <div class="drop">
+        <div class="main_container" *ngFor="let d of getUpcomingInterviews">
+          <div class="container_wrap">
+            <p class="user_info">
+              {{ d.first_name + " " + d.middle_name + " " + d.last_name }}
+            </p>
+            <p class="user_info">
+              {{ d.interview_time | date : "dd/MM/yyyy hh:mm a"}}
+            </p>
+          </div>
+          <hr />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

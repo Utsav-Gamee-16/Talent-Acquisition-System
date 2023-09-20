@@ -1,0 +1,81 @@
+.card-body{
+    margin: 1% 15%;
+
+}
+body{
+    background-color: white;
+}
+mat-card {
+    max-width: 535px;
+    margin: 2em auto;
+    text-align: center;
+}
+
+#cancel_btn{
+    color: rgba(0,0,0,.87);
+    background-color: #ffffff;
+    border-color: rgba(0,0,0,.87);
+
+    margin-right: 10px;
+    margin-left: 10px;
+
+}
+
+.addcard{
+    margin: 1% 15%;
+}
+
+.action{
+    margin: 0 10px;
+    width: 28px;
+    height: 28px;
+}
+.material-icons{
+    font-size: 16px;
+    height: 28px;
+    width: 29px;
+}
+th{
+    text-align: center;
+    padding: 8px;
+}
+td{
+    text-align: center;
+    align-items: center;
+}
+.leftcontent{
+    text-align: left;
+}
+.pagination{
+    margin: 2% 1%;
+}
+
+.card-body {
+    margin: 1% 1%;
+}
+input{
+    padding-top:15px;
+}
+.pagination{
+    margin: 2% 10%;
+}
+.dp {
+    margin-top: -30px;
+    float: right;
+  }
+  th{
+    text-align: center;
+}
+td{
+    text-align: center;
+    align-items: center;
+}
+.formfildes{
+    margin: 1% 15%;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
